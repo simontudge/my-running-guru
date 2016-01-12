@@ -29,6 +29,7 @@
 		}
 		#output{
 			display: none;
+			margin-top: 10px;
 		}
 	</style>
 </head>
@@ -158,7 +159,7 @@
 			}else{
 				$("#errorDiv").css("display", "none");
 				var url_for_php = "php/make_plan.php?weeks="+weeks+"&distance="+distance
-					+"&total_time="+total_time;
+					+"&totalTime="+total_time;
 				//Then we'll display the contents of the php script to the screen
 				$.get( url_for_php, function(data){
 					
