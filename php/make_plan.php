@@ -2,10 +2,8 @@
 
 	//Given the imputs from the get method this calculates the running
 	//plan based on the input of the user
-	echo "Number of weeks: ".$_GET["weeks"];
-	echo "<br/>";
-	echo "Distance: ".$_GET["distance"]." km";
-	echo "<br/>";
-	echo "Target time: ".$_GET["totalTime"]." mins";
+	require("plan.php");
+	$thePlan = new Plan( $_GET["weeks"], $_GET["distance"], $_GET["totalTime"] );
+	$thePlan->describe();
 
 ?>

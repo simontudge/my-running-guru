@@ -57,7 +57,7 @@
 		}
 	}
 
-	//A class for a rest, this is spetial in some ways, but we'll still treat it as
+	//A class for a rest, this is spcial in some ways, but we'll still treat it as
 	//a session
 	class Rest extends Session implements OutputObject{
 		
