@@ -28,15 +28,20 @@
 		public $reps;
 
 		//The constructor of the class
-		public function __construct( $sprintSpeed, $slowSpeed, $reps ){
+		public function __construct( $sprintSpeed, $slowSpeed, $reps, $sprintTime = 1, $slowTime = 3 ){
 			$this->type = "Sprint";
 			$this->sprintSpeed = $sprintSpeed;
 			$this->slowSpeed = $slowSpeed;
 			$this->reps = $reps;
+			$this->slowTime = $slowTime;
+			$this->sprintTime = $sprintTime;
 		}
 
 		public function describe(){
-			echo "Run at $this->slowSpeed km/h and then at $this->sprintSpeed km/h. Repeat $this->reps times." ;
+			echo "Run at ".number_format( $this->slowSpeed, 1)." km/h ";
+			echo "for ". number_format($this->slowTime,2)." min "; 
+			echo "and then at ".number_format($this->sprintSpeed,1)." km/h ";
+			echo "for ".number_format( $this->sprintTime,2)." min. Repeat $this->reps times.";
 		}
 
 	}
@@ -53,11 +58,46 @@
 		} 
 
 		public function describe(){
-			echo "Run $this->distance km in a time of $this->time mins";
+			echo "Run ".number_format($this->distance,1)." km in a time ";
+			echo "of ".number_format( $this->time,0 )." mins";
 		}
 	}
 
-	//A class for a rest, this is spcial in some ways, but we'll still treat it as
+	//A class for a speeding up session (sometimes called a fartlek)
+	class SpeedUpSession extends Session implements OutputObject{
+		
+		public $startSpeed;
+		public $endSpeed;
+		public $duration;
+		public $warmupTime;
+
+		public function __construct( $startSpeed, $endSpeed, $duration = 30, $warmupTime = 4 ){
+
+			$this->type = "Increasing speed";
+			$this->startSpeed = $startSpeed;
+			$this->endSpeed = $endSpeed;
+			$this->duration = $duration;
+			$this->warmupTime = $warmupTime;
+
+		}
+
+		public function describe(){
+
+			echo "Run at ";
+			echo number_format($this->startSpeed,1);
+			echo " km/h for ";
+			echo number_format( $this->warmupTime,2 );
+			echo " mins, then gradually increase speeds until you reach ";
+			echo number_format( $this->endSpeed, 1);
+			echo " km/h over a time of ";
+			echo number_format( $this->duration,2);
+			echo " mins.";
+
+		}
+
+	}
+
+	//A class for a rest, this is special in some ways, but we'll still treat it as
 	//a session
 	class Rest extends Session implements OutputObject{
 		
@@ -70,9 +110,5 @@
 		}
 
 	}
-
-	// $mySes = new SprintSession( 3,4,5 );
-	// $mySes->displayType();
-	// $mySes->describe();
 	
 ?>
