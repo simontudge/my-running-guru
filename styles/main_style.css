@@ -2,10 +2,10 @@
 	margin-top: 150px;
 }
 .narrow{
-	width:84px !important;
+/*	width:84px !important;*/
 }
 #mins{
-	margin-left: 20px;
+	/*margin-left: 20px;*/
 }
 #errorDiv{
 	margin-top:15px;
@@ -14,4 +14,10 @@
 #output{
 	display: none;
 	margin-top: 10px;
+}
+#input-matter{
+	margin-bottom: 200px;
+}
+#blank-div{
+	height:500px;
 }

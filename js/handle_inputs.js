@@ -19,34 +19,37 @@ function buttonClicked(event){
 	//In the future we could do something more sofisticated
 	//Like changing this based on the number of 
 	var total_time = 60*$("#hours").val() + 1*$("#mins").val();
-	if (total_time < 10){
-		errorMessage += "You've entered an unrealistically quick time!"
-	}
 	if( total_time > 600){
 		errorMessage += "Please enter a time less than 10 hours"
 	}
 
 	//Check that mins is valid
 	if( $("#mins").val() < 0 || $("#mins").val() > 59 ){
-		errorMessage += "Please enter a number of minuets between 0 and 59"
+		errorMessage += "Please enter a number of mins between 0 and 59"
 	}
 
 	//Distance is OK as this is a dropdown choice but we'll get javascript to
 	//Parse this into one of a few options here before sending to php
-	var distance
-	switch ( $("#distance").val() ){
+	var distance_string = $("#distance").val()
+	//Do some basic checking in case the user has entered a silly time
+	var minTime
+	switch ( distance_string ){
 		case "5 km":
-			distance = 5;
-			break;
+			minTime = 13;
+			break 
 		case "10 km":
-			distance = 10;
+			minTime = 27;
 			break;
 		case "1/2 Marathon":
-			distance = 21.1;
+			minTime = 60;
 			break;
 		case "Marathon":
-			distance = 42.2;
+			minTime = 125;
 			break;
+	}
+
+	if (total_time < minTime){
+		errorMessage += "You've entered an unrealistically quick time!"
 	}
 
 	//If no errors then call the php script
@@ -56,7 +59,7 @@ function buttonClicked(event){
 
 	}else{
 		$("#errorDiv").css("display", "none");
-		var url_for_php = "php/make_plan.php?weeks="+weeks+"&distance="+distance
+		var url_for_php = "php/make_plan.php?weeks="+weeks+"&distance="+distance_string
 			+"&totalTime="+total_time;
 		//Then we'll display the contents of the php script to the screen
 		$.get( url_for_php, function(data){

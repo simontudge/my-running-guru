@@ -119,7 +119,7 @@
 
 		public function describe(){
 
-			echo'<li class="list-group-item list-group-item-info" >';
+			echo'<li class="list-group-item list-group-item-success" >';
 			$this->displayType();
 			echo "Put your feet up...";
 			echo "</li>";
@@ -127,5 +127,21 @@
 		}
 
 	}
+
+	//Another special object that represents the race. No need for any input here as the user knows what they
+	//want to do anyway.
+	class Race extends Session implements OutputObject{
+
+		public function __construct(){
+			$this->type = "Race Day";
+		}
+
+		public function describe(){
+			echo'<li class="list-group-item list-group-item-danger" >';
+			$this->displayType();
+			echo "Go for it!";
+			echo "</li>";
+		}
+	}  
 	
 ?>

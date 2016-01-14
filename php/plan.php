@@ -7,17 +7,34 @@
 	class Plan implements OutputObject{
 		//These are the three things that come from the form
 		public $total_weeks;
+		public $distance_string;
 		public $distance;
 		public $time;
 		//This is an array of week objects
 		public $weeks = array();
 		public $times_array = array();
 		public $distance_array = array();
+
+		public 	$world_records = array( 
+			"5 km" => 13,
+			"10 km" => 27,
+			"1/2 Marathon" => 60,
+			"Marathon" => 125,
+	 	);
+
+	 	public $distances = array( 
+			"5 km" => 5,
+			"10 km" => 10,
+			"1/2 Marathon" => 21.1,
+			"Marathon" => 42.2,
+	 	);
 		
-		public function __construct( $total_weeks, $distance, $time ){
-			$this->distance = $distance;
+		public function __construct( $total_weeks, $distance_string, $time ){
+			$this->distance_string = $distance_string;
 			$this->total_weeks = $total_weeks;
 			$this->time = $time;
+			//Create a distance in km from the distance string
+			$this->distance = $this->distances[ $distance_string ];
 			//Categorise the difficulty of the run and come up with a plan
 			$this->create_plan();
 		}
@@ -30,27 +47,34 @@
 			//week class, we only need to construct an array of these.
 			$difficulty_array = $this->getDifficultyArray();
 			$this->setTimeDistanceArrays();
-			for ($i=1; $i <= $this->total_weeks ; $i++) { 
+			//Handle all weeks except the race week
+			for ($i=1; $i < $this->total_weeks ; $i++) { 
 				$this->weeks[ $i ] = new week( $difficulty_array[$i], $this->times_array[$i], $this->distance_array[$i], $this->distance );
 			}
+			//Now handle the race week as a special case
+			$this->weeks[ $this->total_weeks ] = new RaceWeek( $difficulty_array[ $this->total_weeks ],
+			 $this->time, $this->distance );
 		}
 
 		//Returns the difficulty of the plan based on the time and distance.
 		//Returns an integer from 1-5 inclusive
 		public function getDifficulty(){
-			//Let's do this very crassly to begin with
-			$speed = $this->distance/$this->time*60;
-			if ( $speed < 8 ){
-				return 1;
-			} elseif ( $speed < 10){
-				return 2;
-			} elseif ( $speed < 12){
-				return 3;
-			} elseif ( $speed < 14){
-				return 4;
-			} elseif ( $speed < 16){
+
+			$world_record = $this->world_records[$this->distance_string];
+			//This should be above one, as the js stops inputs below the world records
+			$frac = $this->time/$world_record;
+			if ( $frac <= 1.3){
 				return 5;
+			}elseif ( $frac <= 1.7 ) {
+				return 2;
+			} elseif ($frac <= 2.7 ) {
+				return 3;
+			} elseif ( $frac <= 5) {
+				return 4;
+			} elseif ( $frac > 5 ) {
+				return 1;
 			}
+
 
 		}
 

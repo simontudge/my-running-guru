@@ -18,57 +18,60 @@
 </head>
 
 <body>
+ 	<div class="navbar navbar-inverse">
+
+    	<div class="container">
+      
+      	<div class="navbar-header">
+        	<a href="" class="navbar-brand">My Running Guru</a>
+      	</div>
+
+    	</div>
+
+  </div>
 
 	<div class ="container">
-		<div id = "main-body" class="row">
-			<div class ="col-md-6 col-md-offset-3">
-				<h1>Personal Training Plan</h1>
-<!-- 				<p class="lead">Get your own personalised training plan for an
-				upcoming race by filling in the infomation below</p> -->
-			</div>
-			<div class ="col-md-4 col-md-offset-3">
-				<form>
-					<div class ="form-group">
-						<label for="distance">Distance</label>
-						<select id ="distance" class="form-control">
-						  <option>5 km</option>
-						  <option>10 km</option>
-						  <option>1/2 Marathon</option>
-						  <option>Marathon</option>
-						</select>
-					</div>
-					<div class ="form-group">
-						<label for="time">Goal Time</label>
-						<div id = "time" class="form-inline"/>
-							<div class="input-group">
-								<input id="hours"  type ="text" class="form-control narrow" />
-								<div id="hour-tag" class="input-group-addon">hrs</div>
+
+			<div class = "row">
+				<div class ="col-md-6 col-md-offset-3">
+					<form>
+						<div class ="form-group">
+							<label for="distance">Distance</label>
+							<select id ="distance" class="form-control">
+							  <option>5 km</option>
+							  <option>10 km</option>
+							  <option>1/2 Marathon</option>
+							  <option>Marathon</option>
+							</select>
+							<label for="time">Goal Time</label>
+								<div class="input-group">
+									<input id="hours"  type ="text" class="form-control narrow" />
+									<div id="hour-tag" class="input-group-addon">hrs</div>
+									<input id="mins" type ="text" class="form-control narrow" />
+									<div class="input-group-addon">mins</div>
+								</div>	
+							<label for="weeks">Total Weeks</label>
+							<div class ="input-group">
+								<input id ="weeks" type = "text" class="form-control"/>
+								<div class ="input-group-addon">Weeks</div>
 							</div>
-							<div class="input-group">
-								<input id="mins" type ="text" class="form-control narrow" />
-								<div class="input-group-addon">mins</div>
-							</div>	
 						</div>
-					</div>
-					<div class ="form-group">
-						<label for="weeks">Total Weeks</label>
-						<div class ="input-group">
-							<input id ="weeks" type = "text" class="form-control"/>
-							<div class ="input-group-addon">Weeks</div>
+						<div style = "text-align: right;">
+							<button id = "submit" type="submit" class = "btn btn-success btn-lg">Calculate!</button>
 						</div>
-					</div>
-					<button id = "submit" type="submit" class = "btn btn-success btn-lg">Calculate!</button>
-				</form>
+					</form>
+				</div>
 			</div>
-			<div class="row" >
 				<div class ="col-md-6 col-md-offset-3">
 					<div id="errorDiv" class = "alert alert-danger">
 					</div>
 				</div>
-			</div>
+				<br/>
+				<br/>
+
+
 				<div id="output">
 				</div>
-		</div>	
 	</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
