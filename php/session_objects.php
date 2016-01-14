@@ -12,7 +12,7 @@
 		}
 
 		public function displayType(){
-			echo "<h3>$this->type</h3><br/>";
+			echo "<strong>$this->type</strong>: ";
 		}
 	}
 
@@ -38,10 +38,15 @@
 		}
 
 		public function describe(){
+
+			echo'<li class="list-group-item list-group-item-warning">';
+			$this->displayType();
 			echo "Run at ".number_format( $this->slowSpeed, 1)." km/h ";
 			echo "for ". number_format($this->slowTime,2)." min "; 
 			echo "and then at ".number_format($this->sprintSpeed,1)." km/h ";
 			echo "for ".number_format( $this->sprintTime,2)." min. Repeat $this->reps times.";
+			echo'</li>';
+
 		}
 
 	}
@@ -58,8 +63,12 @@
 		} 
 
 		public function describe(){
+
+			echo '<li class="list-group-item list-group-item-warning" >';
+			$this->displayType();
 			echo "Run ".number_format($this->distance,1)." km in a time ";
 			echo "of ".number_format( $this->time,0 )." mins";
+			echo "</li>";
 		}
 	}
 
@@ -83,6 +92,8 @@
 
 		public function describe(){
 
+			echo'<li class="list-group-item list-group-item-warning" >';
+			$this->displayType();
 			echo "Run at ";
 			echo number_format($this->startSpeed,1);
 			echo " km/h for ";
@@ -92,6 +103,7 @@
 			echo " km/h over a time of ";
 			echo number_format( $this->duration,2);
 			echo " mins.";
+			echo "</li>";
 
 		}
 
@@ -106,7 +118,12 @@
 		}
 
 		public function describe(){
+
+			echo'<li class="list-group-item list-group-item-info" >';
+			$this->displayType();
 			echo "Put your feet up...";
+			echo "</li>";
+
 		}
 
 	}

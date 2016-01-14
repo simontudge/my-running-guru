@@ -104,8 +104,25 @@
 
 		public function describe(){
 			foreach ($this->weeks as $week_number => $week_object) {
-			 	echo "<h2>Week $week_number </h2>";
+				//Every three weeks we need a new row
+				if( $week_number%3 == 1 ){
+					echo '<div class = "row">';
+				}
+				//We need tp set up the div
+				echo '<div class = "col-md-4">';
+				//And setup the header
+			 	echo '<div class="panel panel-default">';
+				echo '<div class="panel-heading">Week '.$week_number.'</div>';
+
+				//Now we let the week object format it's own list
 			 	$week_object->describe();
+
+			 	//And close all the divs
+			 	echo "</div>";
+			 	echo "</div>";
+			 	if( $week_number%3 == 0 ){
+					echo '</div>';
+				}
 			 } 
 		}
 	

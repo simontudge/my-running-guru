@@ -1,0 +1,17 @@
+#main-body{
+	margin-top: 150px;
+}
+.narrow{
+	width:84px !important;
+}
+#mins{
+	margin-left: 20px;
+}
+#errorDiv{
+	margin-top:15px;
+	display: none;
+}
+#output{
+	display: none;
+	margin-top: 10px;
+}

@@ -82,14 +82,11 @@
 		}
 
 		public function describe(){
-			echo "<ol>";
+			echo '<ul class = "list-group" >';
 			foreach ($this->activities as $day => $activity) {
-				echo"<li>";
-				$activity->displayType();
 				$activity->describe();
-				echo "</li>";
 			}
-			echo "</ol>";
+			echo "</ul>";
 		}
 	}
 
