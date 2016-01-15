@@ -13,7 +13,7 @@
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
-	<link rel="stylesheet" type="text/css" href="/styles/main_style.css">
+	<link rel="stylesheet" type="text/css" href="styles/main_style.css">
 
 </head>
 
@@ -45,14 +45,14 @@
 							</select>
 							<label for="time">Goal Time</label>
 								<div class="input-group">
-									<input id="hours"  type ="text" class="form-control narrow" />
+									<input id="hours"  type ="number" min = "0" max = "10" class="form-control narrow" />
 									<div id="hour-tag" class="input-group-addon">hrs</div>
-									<input id="mins" type ="text" class="form-control narrow" />
+									<input id="mins" type ="number" min = "0" max = "59" class="form-control narrow" />
 									<div class="input-group-addon">mins</div>
 								</div>	
 							<label for="weeks">Total Weeks</label>
 							<div class ="input-group">
-								<input id ="weeks" type = "text" class="form-control"/>
+								<input id ="weeks" min = "2" max = "20" type = "number" class="form-control"/>
 								<div class ="input-group-addon">Weeks</div>
 							</div>
 						</div>
