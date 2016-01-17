@@ -39,12 +39,49 @@
 
 		public function describe(){
 
-			echo'<li class="list-group-item list-group-item-warning">';
+			echo'<li class="list-group-item">';
 			$this->displayType();
 			echo "Run at ".number_format( $this->slowSpeed, 1)." km/h ";
 			echo "for ". number_format($this->slowTime,2)." min "; 
 			echo "and then at ".number_format($this->sprintSpeed,1)." km/h ";
 			echo "for ".number_format( $this->sprintTime,2)." min. Repeat $this->reps times.";
+			echo'</li>';
+
+		}
+
+	}
+
+	//A hill training sessionn involves running up some inclines of various gradients for varous times
+	//A class for sprint session
+	class HillSession extends Session implements OutputObject{
+		public $hillSpeed;
+		public $flatSpeed;
+		public $gradient;
+		public $flatTime;
+		public $hillTime;
+		public $reps;
+
+		//The constructor of the class
+		public function __construct( $hillSpeed, $flatSpeed, $gradient, $flatTime = 4, $hillTime=1, $reps=8 ){
+			$this->type = "Hill Training";
+			$this->hillSpeed = $hillSpeed;
+			$this->flatSpeed = $flatSpeed;
+			$this->gradient = $gradient;
+			$this->reps = $reps;
+			$this->flatTime = $flatTime;
+			$this->hillTime = $hillTime;
+		}
+
+		public function describe(){
+
+			echo'<li class="list-group-item">';
+			$this->displayType();
+			echo "Run at ".number_format( $this->flatSpeed, 1)." km/h along the flat ";
+			echo "for ". number_format($this->flatTime,2)." min "; 
+			echo "and then at ".number_format($this->hillSpeed,1)." km/h ";
+			echo "at a gradient of ".number_format($this->gradient)."% ";
+			echo "for ".number_format( $this->hillTime,2)." min. ";
+			echo "Repeat $this->reps times.";
 			echo'</li>';
 
 		}
@@ -64,7 +101,7 @@
 
 		public function describe(){
 
-			echo '<li class="list-group-item list-group-item-warning" >';
+			echo '<li class="list-group-item" >';
 			$this->displayType();
 			echo "Run ".number_format($this->distance,1)." km in a time ";
 			echo "of ".number_format( $this->time,0 )." mins";
@@ -92,7 +129,7 @@
 
 		public function describe(){
 
-			echo'<li class="list-group-item list-group-item-warning" >';
+			echo'<li class="list-group-item" >';
 			$this->displayType();
 			echo "Run at ";
 			echo number_format($this->startSpeed,1);
@@ -126,6 +163,21 @@
 
 		}
 
+	}
+
+	//This session represents some cross training, but we won't specify what
+	class CrossSession extends Session implements OutputObject{
+
+		public function __construct(){
+			$this->type = "Cross Training";
+		}
+
+		public function describe(){
+			echo'<li class="list-group-item" >';
+			$this->displayType();
+			echo "Do something else that you enjoy, don't take it too seriously";
+			echo "</li>";
+		}
 	}
 
 	//Another special object that represents the race. No need for any input here as the user knows what they

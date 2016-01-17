@@ -7,7 +7,7 @@ function buttonClicked(event){
 	//Check that the number of weeks is within the default range
 	var weeks = $("#weeks").val()
 	if (weeks < 2){
-		errorMessage += "Your event must be atleast 2 weeks from now"
+		errorMessage += "Your event must be at least 2 weeks from now"
 		errorMessage += "<br/>"
 	}
 	if (weeks > 20){
@@ -15,9 +15,7 @@ function buttonClicked(event){
 		errorMessage += "<br/>"
 	}
 
-	//Check that the goal time is sensible
-	//In the future we could do something more sofisticated
-	//Like changing this based on the number of 
+	//Check that the goal time is sensible 
 	var total_time = 60*$("#hours").val() + 1*$("#mins").val();
 	if( total_time > 600){
 		errorMessage += "Please enter a time less than 10 hours"
@@ -31,6 +29,8 @@ function buttonClicked(event){
 	//Distance is OK as this is a dropdown choice but we'll get javascript to
 	//Parse this into one of a few options here before sending to php
 	var distance_string = $("#distance").val()
+	//Days is a drop down menu so no need for value checking
+	var days = $("#days").val();
 	//Do some basic checking in case the user has entered a silly time
 	var minTime
 	switch ( distance_string ){
@@ -59,8 +59,7 @@ function buttonClicked(event){
 
 	}else{
 		$("#errorDiv").css("display", "none");
-		var url_for_php = "php/make_plan.php?weeks="+weeks+"&distance="+distance_string
-			+"&totalTime="+total_time;
+		var url_for_php = "php/make_plan.php?weeks="+weeks+"&distance="+distance_string+"&days="+days+"&totalTime="+total_time;
 		//Then we'll display the contents of the php script to the screen
 		$.get( url_for_php, function(data){
 			

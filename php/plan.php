@@ -29,10 +29,11 @@
 			"Marathon" => 42.2,
 	 	);
 		
-		public function __construct( $total_weeks, $distance_string, $time ){
+		public function __construct( $total_weeks, $distance_string, $time, $days = 4 ){
 			$this->distance_string = $distance_string;
 			$this->total_weeks = $total_weeks;
 			$this->time = $time;
+			$this->days = $days;
 			//Create a distance in km from the distance string
 			$this->distance = $this->distances[ $distance_string ];
 			//Categorise the difficulty of the run and come up with a plan
@@ -49,7 +50,8 @@
 			$this->setTimeDistanceArrays();
 			//Handle all weeks except the race week
 			for ($i=1; $i < $this->total_weeks ; $i++) { 
-				$this->weeks[ $i ] = new week( $difficulty_array[$i], $this->times_array[$i], $this->distance_array[$i], $this->distance );
+				$this->weeks[ $i ] = new week( $difficulty_array[$i], $this->times_array[$i],
+				 $this->distance_array[$i], $this->distance, $this->days );
 			}
 			//Now handle the race week as a special case
 			$this->weeks[ $this->total_weeks ] = new RaceWeek( $difficulty_array[ $this->total_weeks ],
@@ -65,12 +67,12 @@
 			$frac = $this->time/$world_record;
 			if ( $frac <= 1.3){
 				return 5;
-			}elseif ( $frac <= 1.7 ) {
-				return 2;
-			} elseif ($frac <= 2.7 ) {
+			}elseif ( $frac <= 2.1 ) {
+				return 4;
+			} elseif ($frac <= 3.2 ) {
 				return 3;
 			} elseif ( $frac <= 5) {
-				return 4;
+				return 2;
 			} elseif ( $frac > 5 ) {
 				return 1;
 			}
