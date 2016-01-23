@@ -116,8 +116,9 @@
 				}
 			} else{
 				//This is for the long distances, in this case we'll use a fixed speed
-				//and increase the distance.
-				$start_distance = $this->distance*0.6;
+				//and increase the distance. In either case we'll start at 10km and work
+				//our way up.
+				$start_distance = 10;
 				for ($i=1; $i <= $this->total_weeks; $i++) {
 					$dist = $start_distance + ( $this->distance - $start_distance )*
 					( $i - 1 )/( $this->total_weeks - 1);
